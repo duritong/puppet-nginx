@@ -3,8 +3,8 @@
 # GPLv3
 
 class nginx {
-    case $operatingsystem {
-        gentoo: { include nginx::gentoo }
-        default: { include nginx::base }
-    }
+  case $::operatingsystem {
+    gentoo: { include nginx::gentoo }
+    default: { include nginx::base }
+  }
 }

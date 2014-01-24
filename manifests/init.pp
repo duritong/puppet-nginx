@@ -10,6 +10,7 @@
 class nginx(
   $manage_shorewall_http  = false,
   $manage_shorewall_https = false,
+  $use_munin              = false,
 ) {
   case $::operatingsystem {
     gentoo: { include nginx::gentoo }
@@ -21,5 +22,11 @@ class nginx(
   }
   if $manage_shorewall_https {
     include shorewall::rules::https
+  }
+
+  if $use_munin {
+    include nginx::munin
+  } else {
+    include nginx::munin::disable
   }
 }

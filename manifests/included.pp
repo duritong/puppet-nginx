@@ -18,11 +18,11 @@ define nginx::included(
     }
     if $content {
       File["/etc/nginx/include.d/${name}.conf"]{
-        source => $source
+        content => $content
       }
     } else {
       File["/etc/nginx/include.d/${name}.conf"]{
-        content => $content
+        source => $source
       }
     }
   }

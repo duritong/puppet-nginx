@@ -19,11 +19,11 @@ define nginx::confd(
     }
     if $content {
       File["/etc/nginx/conf.d/${name}.conf"]{
-        source => $source
+        content => $content
       }
     } else {
       File["/etc/nginx/conf.d/${name}.conf"]{
-        content => $content
+        source => $source
       }
     }
   }

@@ -1,5 +1,5 @@
 # Deploy vhosts.d files for nginx
-define nginx::confd(
+define nginx::vhostsd(
   $ensure  = 'present',
   $source  = ["puppet:///modules/site_nginx/${::fqdn}/vhosts.d/${name}.conf",
               "puppet:///modules/site_nginx/vhosts.d/${name}.conf" ],
@@ -18,11 +18,11 @@ define nginx::confd(
     }
     if $content {
       File["/etc/nginx/vhosts.d/${name}.conf"]{
-        source => $source
+        content => $content
       }
     } else {
       File["/etc/nginx/vhosts.d/${name}.conf"]{
-        content => $content
+        source => $source
       }
     }
   }

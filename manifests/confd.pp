@@ -5,7 +5,6 @@ define nginx::confd(
               "puppet:///modules/site_nginx/conf.d/${name}.conf" ],
   $content = false,
 ){
-  include ::nginx
   file{"/etc/nginx/conf.d/${name}.conf":
     ensure  => $ensure,
     require => Package['nginx'],

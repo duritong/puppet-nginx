@@ -29,4 +29,8 @@ class nginx(
   } else {
     include nginx::munin::disable
   }
+
+  if str2bool($::selinux) {
+    include nginx::selinux
+  }
 }

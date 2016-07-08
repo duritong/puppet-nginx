@@ -6,15 +6,15 @@ define nginx::vhostsd(
   $content = false,
 ){
   file{"/etc/nginx/vhosts.d/${name}.conf":
-    ensure  => $ensure,
-    notify  => Service['nginx'],
+    ensure => $ensure,
+    notify => Service['nginx'],
   }
 
   if $ensure == 'present' {
     File["/etc/nginx/vhosts.d/${name}.conf"]{
-      owner   => root,
-      group   => 0,
-      mode    => '0644'
+      owner => root,
+      group => 0,
+      mode  => '0644'
     }
     if $content {
       File["/etc/nginx/vhosts.d/${name}.conf"]{

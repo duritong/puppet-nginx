@@ -13,9 +13,9 @@ define nginx::confd(
 
   if $ensure == 'present' {
     File["/etc/nginx/conf.d/${name}.conf"]{
-      owner   => root,
-      group   => 0,
-      mode    => '0644'
+      owner => root,
+      group => 0,
+      mode  => '0644'
     }
     if $content {
       File["/etc/nginx/conf.d/${name}.conf"]{

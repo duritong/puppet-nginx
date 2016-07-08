@@ -25,7 +25,7 @@ class nginx::base {
   }
 
   service{'nginx':
-    ensure  => running,
-    enable  => true,
+    ensure => running,
+    enable => true,
   }
 }

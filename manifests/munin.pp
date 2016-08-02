@@ -9,13 +9,11 @@ location /nginx_status {
   allow       127.0.0.1;   # restrict access to local only
   deny        all;
 }';
-  }
-  exec{'add_munin_status':
-    command => 'sed -i \'/^        server_name  _;$/a\\n        include /etc/nginx/include.d/munin.conf;\' /etc/nginx/nginx.conf',
-    unless  => 'grep -q "/etc/nginx/include.d/munin.conf" /etc/nginx/nginx.conf',
+  } -> file_line{'munin_status':
+    line    => '        include /etc/nginx/include.d/munin.conf;',
+    path    => '/etc/nginx/nginx.conf',
+    after   => 'server_name  _',
     require => File['/etc/nginx/include.d/munin.conf'],
     notify  => Service['nginx'],
-  }
-
-  munin::plugin{ [ 'nginx_request', 'nginx_status' ]: }
+  } -> munin::plugin{ [ 'nginx_request', 'nginx_status' ]: }
 }

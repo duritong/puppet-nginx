@@ -12,7 +12,7 @@ location /nginx_status {
   } -> file_line{'munin_status':
     line    => '        include /etc/nginx/include.d/munin.conf;',
     path    => '/etc/nginx/nginx.conf',
-    after   => 'server_name  _',
+    after   => '^\s+server_name  _',
     require => File['/etc/nginx/include.d/munin.conf'],
     notify  => Service['nginx'],
   } -> munin::plugin{ [ 'nginx_request', 'nginx_status' ]: }

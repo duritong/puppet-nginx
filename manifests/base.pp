@@ -19,7 +19,7 @@ class nginx::base {
 
   if versioncmp($::operatingsystemmajrelease,'6') > 0 {
     file{'/etc/nginx/conf.d/virtual.conf':
-      ensure  => present,
+      ensure  => file,
       owner   => root,
       group   => 0,
       mode    => '0644',

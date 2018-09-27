@@ -38,5 +38,8 @@ class nginx::base {
   service{'nginx':
     ensure => running,
     enable => true,
+  } ->  exec{'reload_nginx':
+    refreshonly => true,
+    command     => '/usr/bin/systemctl reload nginx',
   }
 }
